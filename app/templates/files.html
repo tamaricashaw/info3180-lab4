@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<h1 class="page-header">Uploaded Files</h1>
+
+{% include 'flash_messages.html' %}
+
+{% if images %}
+    <h2>Image Gallery</h2>
+    
+    <!-- Unordered list of images -->
+    <ul class="image-gallery">
+        {% for image in images %}
+        <li>
+            <!-- Display the image using the route from Step 2 -->
+            <img src="{{ url_for('get_image', filename=image) }}" alt="{{ image }}" class="thumbnail">
+            <p>{{ image }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    
+    <!-- Alternative: Ordered list -->
+    <!--
+    <ol class="image-gallery">
+        {% for image in images %}
+        <li>
+            <img src="{{ url_for('get_image', filename=image) }}" alt="{{ image }}" class="thumbnail">
+            <p>{{ image }}</p>
+        </li>
+        {% endfor %}
+    </ol>
+    -->
+    
+{% else %}
+    <div class="alert alert-info">
+        No images have been uploaded yet. 
+        <a href="{{ url_for('upload') }}">Upload an image</a>
+    </div>
+{% endif %}
+
+{% endblock %}
