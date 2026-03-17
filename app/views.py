@@ -97,6 +97,16 @@ def files():
 
     return render_template('files.html', images=images)
 
+
+
+@app.route('/logout')
+@login_required  
+def logout():
+
+    logout_user()  
+    flash('You have been successfully logged out.', 'success')
+    return redirect(url_for('home'))
+
 #################################
 def get_uploaded_images():
     images = []
