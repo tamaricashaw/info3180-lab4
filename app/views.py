@@ -110,6 +110,7 @@ def logout():
 #################################
 def get_uploaded_images():
     images = []
+    allowed_extensions = {'.jpg', '.jpeg', '.png', '.gif'}
     
     upload_folder = app.config['UPLOAD_FOLDER']
     
@@ -118,7 +119,10 @@ def get_uploaded_images():
         for filename in os.listdir(upload_folder):
             file_path = os.path.join(upload_folder, filename)
             if os.path.isfile(file_path):
-                images.append(filename)
+                ext = os.path.splitext(filename)[1].lower()
+                if ext in allowed_extensions and filename != '.gitkeep':
+                    images.append(filename)
+                
     
     return images
 
