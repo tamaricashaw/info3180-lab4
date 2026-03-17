@@ -76,7 +76,7 @@ def login():
         flash('Logged in successfully.', 'success')
 
        
-        return redirect(url_for("files"))  # The user should be redirected to the upload form instead
+        return redirect(url_for("upload"))  # The user should be redirected to the upload form instead
     return render_template("login.html", form=form)
 
 
@@ -84,7 +84,6 @@ def login():
 def get_image(filename):
     
     return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']), filename) 
-
 
 
 
